@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Upload Student Marks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(-45deg, #00c6ff, #0072ff);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.13);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            width: 90%;
+            max-width: 600px;
+            color: #fff;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card img {
+            width: 200px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        input[type="file"] {
+            padding: 14px;
+            width: 100%;
+            border: 2px dashed #fff;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        input[type="file"]::file-selector-button {
+            padding: 10px 16px;
+            background-color: #fff;
+            color: #333;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #fff;
+            color: #0072ff;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e6e6e6;
+        }
+
+        .error {
+            margin-top: 20px;
+            color: #ffd6d6;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <!-- Animated Upload Illustration -->
+    <img src="https://undraw.co/api/illustrations/36b1793c-58bc-4981-9700-09a1eb2f6a9a" alt="Upload Illustration" />
+
+    <h2>📤 Upload Your Student Marks Excel File</h2>
+
+    <form method="post" enctype="multipart/form-data" action="/analyze">
+        <input type="file" name="file" required />
+        <br>
+        <button type="submit">Analyze</button>
+    </form>
+
+    <p th:if="${error}" th:text="${error}" class="error"></p>
+</div>
+</body>
+</html>
+
+
+
